@@ -1,0 +1,21 @@
+<ul>
+  <li>
+    <button
+      (click)="doNavigation('prev')">
+      <
+    </button>
+  </li>
+  <li *ngFor="let item of paginationData;">
+    <button
+      [ngClass]="{ '__active': item.isActive }"
+      (click)="item.isActive ? '' : doNavigation(item.page)">
+      {{ item.page }}
+    </button>
+  </li>
+  <li>
+    <button
+      (click)="doNavigation('next')">
+      >
+    </button>
+  </li>
+</ul>

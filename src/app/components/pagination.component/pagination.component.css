@@ -1,0 +1,26 @@
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  margin: 5px 10px;
+}
+
+li > button {
+  border: 1px solid transparent;
+  padding: 7px 10px;
+  border-radius: 25px;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+li > button.__active {
+  border: 1px solid #32302e;
+  background-color: #e6e6e6;
+}
+
+li > button:hover {
+  opacity: .75;
+}

@@ -114,6 +114,72 @@ export class MusicDataService {
       year: '2015'
     },
     {
+      author: 'Guano Apes',
+      song: 'Open Your Eyes',
+      genre: 'Rock',
+      year: '1999'
+    },
+    {
+      author: 'Guano Apes',
+      song: 'Lord of the Boards',
+      genre: 'Rock',
+      year: '1999'
+    },
+    {
+      author: 'Guano Apes',
+      song: 'Lose Yourself',
+      genre: 'Rock',
+      year: '2017'
+    },
+    {
+      author: 'John Coffee',
+      song: 'Broke Neck',
+      genre: 'Rock',
+      year: '2015'
+    },
+    {
+      author: 'John Coffee',
+      song: 'Redrum',
+      genre: 'Rock',
+      year: '2015'
+    },
+    {
+      author: 'John Coffee',
+      song: 'Son',
+      genre: 'Rock',
+      year: '2015'
+    },
+    {
+      author: 'Lisa LeBlanc',
+      song: 'Ti-gars',
+      genre: 'Alternative',
+      year: '2016'
+    },
+    {
+      author: 'Lisa LeBlanc',
+      song: '5748 km',
+      genre: 'Alternative',
+      year: '2016'
+    },
+    {
+      author: 'Lisa LeBlanc',
+      song: 'Ace of Spades',
+      genre: 'Alternative',
+      year: '2016'
+    },
+    {
+      author: 'Lisa LeBlanc',
+      song: 'En cher',
+      genre: 'Alternative',
+      year: '2016'
+    },
+    {
+      author: 'Lisa LeBlanc',
+      song: 'Dad man\'s flats',
+      genre: 'Alternative',
+      year: '2016'
+    },
+    {
       author: 'Muddy',
       song: 'Mannish',
       genre: 'Blues',
@@ -121,8 +187,16 @@ export class MusicDataService {
     }
   ];
 
-  public getMusicData(requestBody: any): MusicData[] {
+  public getMusicData(requestBody: any): any {
     let firstItem = (requestBody.pageNum - 1) * requestBody.itemsPerPage;
-    return this.data.slice(firstItem, firstItem + requestBody.itemsPerPage);
+
+    return {
+      data: this.data.slice(firstItem, firstItem + requestBody.itemsPerPage),
+      meta: {
+        itemsPerPage: requestBody.itemsPerPage,
+        pageNum: requestBody.pageNum,
+        pageCount: Math.ceil(this.data.length / requestBody.itemsPerPage)
+      }
+    }
   }
 }

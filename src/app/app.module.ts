@@ -5,12 +5,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MusicTableComponent } from './components/music-table.component/music-table.component';
 import { MusicDataService } from './services/music-data.service';
+import { PaginationComponent } from './components/pagination.component/pagination.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MusicTableComponent
+    MusicTableComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule
