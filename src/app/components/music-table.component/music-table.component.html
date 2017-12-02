@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th class="author">Исполнитель</th>
+      <th class="song">Песня</th>
+      <th class="genre">Жанр</th>
+      <th class="year">Год</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data;">
+      <td>{{ item.author }}</td>
+      <td>{{ item.song }}</td>
+      <td>{{ item.genre }}</td>
+      <td>{{ item.year }}</td>
+    </tr>
+  </tbody>
+
+</table>

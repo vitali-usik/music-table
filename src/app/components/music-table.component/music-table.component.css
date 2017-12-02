@@ -1,0 +1,30 @@
+table {
+  border: 1px solid #32302e;
+  margin: 0 auto;
+}
+
+.author {
+  width: 200px;
+}
+
+.song {
+  width: 200px;
+}
+
+.genre {
+  width: 120px;
+}
+
+.year {
+  width: 120px;
+}
+
+th, td {
+  border: 1px solid #32302e;
+  padding: 5px 10px;
+}
+
+th {
+  text-align: left;
+  background: #e6e6e6;
+}
