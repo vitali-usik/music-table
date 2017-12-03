@@ -1,3 +1,12 @@
+.page {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  display: flex;
+}
+
 .table-wrapper {
   margin: 20px auto;
 }
@@ -17,4 +26,14 @@
 .item-count {
   position: absolute;
   right: 0;
+}
+
+.info-todo {
+  width: 960px;
+  margin: 20px 0;
+  padding: 0;
+}
+
+.info-todo > li {
+  display: list-item;
 }

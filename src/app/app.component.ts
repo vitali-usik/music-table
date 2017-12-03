@@ -7,6 +7,7 @@ import { RequestBody } from './models/request-body.model';
 import { ItemCount } from './models/item-count.model';
 import { LocalStorageService } from './services/local-storage.service';
 import { LocalStorageItems } from './const/local-storage-items.const';
+import { FilterTypes } from './const/filter-types.const';
 
 const ITEMS_PER_PAGE: number[] = [5, 10, 15, 20, 30];
 const DEFAULT_ITEMS_PER_PAGE: number = 10;
@@ -23,12 +24,14 @@ export class AppComponent implements OnInit {
   public paginationData: PaginationItemModel[];
   public requestBody: RequestBody;
   public itemCount: ItemCount[];
+  public filters: any;
 
   constructor(private musicDataService: MusicDataService, private localStorageService: LocalStorageService) {}
 
   public ngOnInit(): void {
     this.requestBody = this.initRequestBody();
     this.getMusicTableData();
+    this.getFilters()
   }
 
   public doActionCallback($event): void {
@@ -40,6 +43,9 @@ export class AppComponent implements OnInit {
       this.requestBody.pageNum = 1;
       this.requestBody.itemsPerPage = $event.itemsPerPage;
       this.localStorageService.setItem(LocalStorageItems.ITEMS_PER_PAGE, this.requestBody.itemsPerPage);
+      this.getMusicTableData();
+    } else if ($event.eventType === FilterTypes.AUTHOR) {
+      this.requestBody.author = $event.value;
       this.getMusicTableData();
     }
   }
@@ -92,5 +98,9 @@ export class AppComponent implements OnInit {
         isActive: item === itemsPerPage
       }
     })
+  }
+
+  private getFilters() {
+    this.filters = this.musicDataService.getFilters();
   }
 }

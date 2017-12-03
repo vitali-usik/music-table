@@ -8,6 +8,8 @@ import { MusicDataService } from './services/music-data.service';
 import { PaginationComponent } from './components/pagination.component/pagination.component';
 import { ItemCountComponent } from './components/item-count.component/item-count.component';
 import { LocalStorageService } from './services/local-storage.service';
+import { FiltersComponent } from './components/filters.component/filters.component';
+import { FilterItemComponent } from './components/filter-item.component/filter-item.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { LocalStorageService } from './services/local-storage.service';
     AppComponent,
     MusicTableComponent,
     PaginationComponent,
-    ItemCountComponent
+    ItemCountComponent,
+    FiltersComponent,
+    FilterItemComponent
   ],
   imports: [
     BrowserModule

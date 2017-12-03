@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MusicData } from '../models/music-data.model';
+import { FilterTypes } from '../const/filter-types.const';
 
 @Injectable()
 export class MusicDataService {
@@ -188,15 +189,49 @@ export class MusicDataService {
   ];
 
   public getMusicData(requestBody: any): any {
+    let filteredData: MusicData[] = [];
     let firstItem = (requestBody.pageNum - 1) * requestBody.itemsPerPage;
 
+    if (requestBody.author) {
+      filteredData = this.filterByAuthor(requestBody.author);
+    } else {
+      filteredData = this.data
+    }
+
     return {
-      data: this.data.slice(firstItem, firstItem + requestBody.itemsPerPage),
+      data: filteredData.slice(firstItem, firstItem + requestBody.itemsPerPage),
       meta: {
         itemsPerPage: requestBody.itemsPerPage,
         pageNum: requestBody.pageNum,
-        pageCount: Math.ceil(this.data.length / requestBody.itemsPerPage)
+        pageCount: Math.ceil(filteredData.length / requestBody.itemsPerPage)
       }
     }
+  }
+
+  public getFilters() {
+    return [
+      this.getAuthors()
+    ]
+  }
+
+  private getAuthors(): any {
+    let authors = ['Все'];
+
+    this.data.forEach((item) => {
+      if (authors.indexOf(item.author) === -1) {
+        authors.push(item.author);
+      }
+    });
+
+    return {
+      type: FilterTypes.AUTHOR,
+      filterItems: authors
+    };
+  }
+
+  private filterByAuthor(author: string): MusicData[] {
+    return this.data.filter((item) => {
+      return item.author === author;
+    });
   }
 }

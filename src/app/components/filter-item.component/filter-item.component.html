@@ -1,0 +1,8 @@
+<div class="select-wrapper">
+  <select (change)="applyFilter($event)">
+    <option
+      *ngFor="let item of data.filterItems">
+      {{ item }}
+    </option>
+  </select>
+</div>

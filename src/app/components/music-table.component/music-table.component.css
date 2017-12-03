@@ -1,3 +1,10 @@
+h4 {
+  font-size: 20px;
+  line-height: 22px;
+  margin: 10px 0;
+  font-weight: normal;
+}
+
 table {
   border: 1px solid #32302e;
   margin: 0 auto;

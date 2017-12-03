@@ -1,0 +1,15 @@
+<div class="filters-wrapper">
+  <h4>Фильтр</h4>
+  <div class="filters">
+
+    <div
+      *ngFor="let filter of filters"
+      class="filter-item">
+      <mt-filter-item
+        [data]="filter"
+        (applyFilterCallback)="callbackDispatcher($event)">
+      </mt-filter-item>
+    </div>
+
+  </div>
+</div>
