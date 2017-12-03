@@ -12,9 +12,24 @@
   </mt-music-table>
 </div>
 
-<mt-pagination
-  [paginationData]="paginationData"
-  (doNavigationCallback)="doActionCallback($event)">
-</mt-pagination>
+<div class="pagination-pages-wrapper">
+  <mt-pagination
+    class="pagination"
+    [paginationData]="paginationData"
+    (doNavigationCallback)="doActionCallback($event)">
+  </mt-pagination>
+
+  <mt-item-count
+    class="item-count"
+    [itemsData]="itemCount"
+    (doItemCountChangeCallback)="doActionCallback($event)">
+  </mt-item-count>
+</div>
+
+// TODO
+<ul>
+  <li>Уменьшено количество элементов в таблице с 10-25-50-100 до 5-10-15-20-30 для удобстав тестирования</li>
+  <li>Ограничить пагинацию на количество страниц (показывать многоточия при определенном количестве страниц</li>
+</ul>
 
 

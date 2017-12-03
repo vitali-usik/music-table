@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let item of itemsData">
+    <button
+      [ngClass]="{ '__active': item.isActive }"
+      (click)="setItemCount(item.items)">
+      {{ item.items }}
+    </button>
+  </li>
+</ul>
