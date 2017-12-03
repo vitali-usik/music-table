@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { MusicData } from '../models/music-data.model';
 import { FilterTypes } from '../const/filter-types.const';
 
+const ALL = 'Все';
+
 @Injectable()
 export class MusicDataService {
 
@@ -189,13 +191,19 @@ export class MusicDataService {
   ];
 
   public getMusicData(requestBody: any): any {
-    let filteredData: MusicData[] = [];
+    let filteredData: MusicData[] = this.data;
     let firstItem = (requestBody.pageNum - 1) * requestBody.itemsPerPage;
 
     if (requestBody.author) {
-      filteredData = this.filterByAuthor(requestBody.author);
-    } else {
-      filteredData = this.data
+      filteredData = requestBody.author === ALL ? filteredData : this.filterByAuthor(filteredData, requestBody.author);
+    }
+
+    if (requestBody.genre) {
+      filteredData = requestBody.genre === ALL ? filteredData : this.filterByGenre(filteredData, requestBody.genre)
+    }
+
+    if (requestBody.year) {
+      filteredData = requestBody.year === ALL ? filteredData : this.filterByYear(filteredData, requestBody.year)
     }
 
     return {
@@ -210,12 +218,14 @@ export class MusicDataService {
 
   public getFilters() {
     return [
-      this.getAuthors()
+      this.getAuthors(),
+      this.getGenres(),
+      this.getYears()
     ]
   }
 
   private getAuthors(): any {
-    let authors = ['Все'];
+    let authors = [ALL];
 
     this.data.forEach((item) => {
       if (authors.indexOf(item.author) === -1) {
@@ -229,9 +239,51 @@ export class MusicDataService {
     };
   }
 
-  private filterByAuthor(author: string): MusicData[] {
-    return this.data.filter((item) => {
+  private getGenres(): any {
+    let genres = [ALL];
+
+    this.data.forEach((item) => {
+      if (genres.indexOf(item.genre) === -1) {
+        genres.push(item.genre);
+      }
+    });
+
+    return {
+      type: FilterTypes.GENRE,
+      filterItems: genres
+    };
+  }
+
+  private getYears(): any {
+    let years = [ALL];
+
+    this.data.forEach((item) => {
+      if (years.indexOf(item.year) === -1) {
+        years.push(item.year);
+      }
+    });
+
+    return {
+      type: FilterTypes.YEAR,
+      filterItems: years
+    };
+  }
+
+  private filterByAuthor(filteredData: MusicData[], author: string): MusicData[] {
+    return filteredData.filter((item) => {
       return item.author === author;
+    });
+  }
+
+  private filterByGenre(filteredData: MusicData[], genre: string): MusicData[] {
+    return filteredData.filter((item) => {
+      return item.genre === genre;
+    });
+  }
+
+  private filterByYear(filteredData: MusicData[], year: string): MusicData[] {
+    return filteredData.filter((item) => {
+      return item.year === year;
     });
   }
 }

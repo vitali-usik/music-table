@@ -38,16 +38,19 @@ export class AppComponent implements OnInit {
     console.log('$event', $event);
     if ($event.eventType === ActionTypes.PAGINATION) {
       this.requestBody.pageNum = $event.index;
-      this.getMusicTableData();
     } else if ($event.eventType === ActionTypes.ITEMS_COUNT_CHANGE) {
       this.requestBody.pageNum = 1;
       this.requestBody.itemsPerPage = $event.itemsPerPage;
       this.localStorageService.setItem(LocalStorageItems.ITEMS_PER_PAGE, this.requestBody.itemsPerPage);
-      this.getMusicTableData();
     } else if ($event.eventType === FilterTypes.AUTHOR) {
       this.requestBody.author = $event.value;
-      this.getMusicTableData();
+    } else if ($event.eventType === FilterTypes.GENRE) {
+      this.requestBody.genre = $event.value;
+    } else if ($event.eventType === FilterTypes.YEAR) {
+      this.requestBody.year = $event.value;
     }
+
+    this.getMusicTableData();
   }
 
   private getMusicTableData(): void {
