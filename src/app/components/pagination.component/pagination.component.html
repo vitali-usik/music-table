@@ -1,7 +1,7 @@
 <ul>
   <li>
     <button
-      (click)="doNavigation('prev')">
+      (click)="doNavigation(activeItem.page - 1)">
       <
     </button>
   </li>
@@ -14,7 +14,7 @@
   </li>
   <li>
     <button
-      (click)="doNavigation('next')">
+      (click)="doNavigation(activeItem.page + 1)">
       >
     </button>
   </li>

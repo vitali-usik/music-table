@@ -26,12 +26,9 @@ export class PaginationComponent implements OnInit, OnChanges {
    * Converts index from prev/next to number and calls callback
    * @param index
    */
-  public doNavigation(index: number|string): void {
-    if (typeof index === 'string') {
-      index = index === 'prev' ? this.activeItem.page - 1 : this.activeItem.page + 1;
-      if (index < 1 || index > this.paginationData.length) {
-        return;
-      }
+  public doNavigation(index: number): void {
+    if (index < 1 || index > this.paginationData.length) {
+      return;
     }
 
     this.doNavigationCallback.emit({ eventType: ActionTypes.PAGINATION, index });
